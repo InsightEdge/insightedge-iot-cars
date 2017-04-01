@@ -18,22 +18,30 @@ public class CarEventDispatcher {
 
 		private static final String POST_URL = "http://52.168.165.238:1500/";
 			
-		public static void main(String [] args) {
-			System.out.println("Dispatching car events from Space");
+		public static void main(String [] args) throws InterruptedException {
+			
 					
 			UrlSpaceConfigurer spaceConfigurer = new UrlSpaceConfigurer("jini://localhost/*/insightedge-space");
 			GigaSpace gigaSpace = new GigaSpaceConfigurer(spaceConfigurer).gigaSpace();
 				
 			SQLQuery<CarEvent> query = new SQLQuery<CarEvent>(CarEvent.class, "isSentByHttp = false");
 
-			for(CarEvent e : gigaSpace.readMultiple(query)) {
-				System.out.println("Posting " + e);
-				try {
-					httpPost(e.toString());
-				} catch(IOException ex) {
-					ex.printStackTrace();
+			CarEvent[] events = gigaSpace.takeMultiple(query);
+			if(events.length > 0) {
+				System.out.println("	Dispatching " + events.length + " car events from space ");
+				for(CarEvent e : events) {
+					System.out.println("Posting " + e);
+					try {
+						httpPost(e.toString());
+						Thread.sleep(1000);
+					} catch(IOException ex) {
+						ex.printStackTrace();
+					}
 				}
+			} else {
+				System.out.println("	Nothing to dispatch, 0 events in space ");
 			}
+			
 		}
 		
 		private static void httpPost(String payload) throws IOException {

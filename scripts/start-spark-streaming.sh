@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-source ./local_env.sh
-
 echo "INSIGHTEDGE_HOME=$INSIGHTEDGE_HOME"
 
 
@@ -9,9 +7,8 @@ streamJar="../events-streaming/target/events-streaming.jar"
 
 ieHost=localhost
 zookeeper=localhost:2181
-checkpointDir="magic-checkpoint"
 
-$INSIGHTEDGE_HOME/bin/insightedge-submit \
+nohup $INSIGHTEDGE_HOME/bin/insightedge-submit \
     --class com.magic.insightedge.EventsStreamApp \
     --master spark://$ieHost:7077 \
     --executor-cores 2 \
@@ -23,10 +20,5 @@ $INSIGHTEDGE_HOME/bin/insightedge-submit \
     --lookup-groups insightedge \
     --lookup-locators $ieHost \
     --batch-duration 1 \
-    --checkpoint-dir "C1"
-
-popd
-
-    # --deploy-mode cluster \
-
+    --checkpoint-dir "C1" & 
 
