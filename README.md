@@ -1,2 +1,1 @@
-# insightedge-iot-cars
-IoT Connect Cars Demo
+# magic-ie2-poc
