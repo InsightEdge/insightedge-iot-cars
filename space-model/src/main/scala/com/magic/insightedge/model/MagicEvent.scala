@@ -29,11 +29,86 @@ case class CarEvent(
                      @BeanProperty
                      var RECHNERBEZ: String,
 
+                     @BeanProperty
+                     var DCELINK_ID: String,//3
+
+                     @BeanProperty
+                     var SCHWEISSGERAETE_NAME: String,//5
+
+                     @BeanProperty
+                     var ORTSNUMMER: String,//6
+
+                     @BeanProperty
+                     var WIP: Int, //] [bit] NOT NULL,//7
+
+                     @BeanProperty
+                     var BOLZEN_ID: String,
+
+                     @BeanProperty
+                     var KAROSSERIE_ID: String,
+
+                     @BeanProperty
+                     var AUSGANGS_ID: String,
+
+                     @BeanProperty
+                     var SCHWEISSPROGRAMM_ID: String,
+
+                     @BeanProperty
+                     var SCHWEISSSTROM_IST: String,
+
+                     @BeanProperty
+                     var SCHWEISSZEIT_IST: Double,
+
+                     @BeanProperty
+                     var UL_HAUPTSTROM_IST: Double,
+
+                     @BeanProperty
+                     var UL_VORSTROM_IST: Double,
+
+                     @BeanProperty
+                     var HUBHOEHE_IST: Double,
+
+                     @BeanProperty
+                     var HUBHOEHE_SOLL: String,
+
+                     @BeanProperty
+                     var ABFALLZEIT_IST: Double,
+
+                     @BeanProperty
+                     var ABFALLZEIT_SOLL: String,
+
+                     @BeanProperty
+                     var DURCHDRINGUNG_IST: Double,
+
+                     @BeanProperty
+                     var SCHWEISSENERGIE_IST: Double,
+
                      @BooleanBeanProperty
                      var IsSentByHttp: Boolean
 
                           ) extends MagicEvent() {
-  def this() = this(-1, null, false)
+  def this() = this(
+    -1,
+    null,
+    null,
+    null,
+    null,
+    0,
+    null,
+    null,
+    null,
+    null,
+    null,
+    -1.0,
+    -1.0,
+    -1.0,
+    -1.0,
+    null,
+    -1.0,
+    null,
+    -1.0,
+    -1.0,
+    false)
 
 //  implicit val CarEventWrites = new Writes[CarEvent] {
 //    def writes(carEvent: CarEvent) = Json.obj(
@@ -59,14 +134,14 @@ case class AggregatedCar(
 }
 
 //case class CarEvent(
-//var ID: Long,
-//var RECHNERBEZ: String,
-//var DCELINK_ID: String,
-//var DATE_TIME: String,
-//var SCHWEISSGERAETE_NAME: String,
-//var ORTSNUMMER: String,
-//var WIP: Int, //] [bit] NOT NULL,
-//var ANZAHL_WIPWOP_PROG: String,
+//var ID: Long,//1
+//var RECHNERBEZ: String,//2
+//var DCELINK_ID: String,//3
+//var DATE_TIME: String,//4
+//var SCHWEISSGERAETE_NAME: String,//5
+//var ORTSNUMMER: String,//6
+//var WIP: Int, //] [bit] NOT NULL,//7
+//var ANZAHL_WIPWOP_PROG: String,//8
 //var ANZAHL_WOP_PROG: String,
 //var BOLZEN_ID: String,
 //var KAROSSERIE_ID: String,

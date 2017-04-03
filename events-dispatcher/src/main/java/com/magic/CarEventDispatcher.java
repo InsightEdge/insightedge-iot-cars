@@ -7,18 +7,25 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+import com.magic.insightedge.model.CarEvent;
 import org.openspaces.core.GigaSpace;
 import org.openspaces.core.GigaSpaceConfigurer;
 import org.openspaces.core.space.UrlSpaceConfigurer;
 
 import com.j_spaces.core.client.SQLQuery;
-import com.magic.insightedge.model.CarEvent;
+//import com.magic.insightedge.model.CarEvent;
+//import com.magic.events.Events.CarEvent;
+
+import play.api.libs.json.Json;
+
 
 public class CarEventDispatcher {
 
 		private static final String POST_URL = "http://52.168.165.238:1500/";
-			
-		public static void main(String [] args) throws InterruptedException {
+//	private static final String POST_URL = "http://localhost:8091/";
+
+
+	public static void main(String [] args) throws InterruptedException {
 			
 					
 			UrlSpaceConfigurer spaceConfigurer = new UrlSpaceConfigurer("jini://localhost/*/insightedge-space");

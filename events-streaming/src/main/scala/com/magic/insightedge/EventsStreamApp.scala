@@ -67,7 +67,28 @@ object EventsStreamApp {
       .mapPartitions { partitions =>
        partitions.map { e =>
          print("_______________________________- " +e)
-        model.CarEvent(e.ID, e.RECHNERBEZ, e.IsSentByHttp)
+        model.CarEvent(
+          e.ID,
+          e.RECHNERBEZ,
+          e.DCELINK_ID,
+          e.SCHWEISSGERAETE_NAME,
+          e.ORTSNUMMER,
+          e.WIP,
+          e.BOLZEN_ID,
+          e.KAROSSERIE_ID,
+          e.AUSGANGS_ID,
+          e.SCHWEISSPROGRAMM_ID,
+          e.SCHWEISSSTROM_IST,
+          e.SCHWEISSZEIT_IST,
+          e.UL_HAUPTSTROM_IST,
+          e.UL_VORSTROM_IST,
+          e.HUBHOEHE_IST,
+          e.HUBHOEHE_SOLL,
+          e.ABFALLZEIT_IST,
+          e.ABFALLZEIT_SOLL,
+          e.DURCHDRINGUNG_IST,
+          e.SCHWEISSENERGIE_IST,
+          e.IsSentByHttp)
 
        }
       }

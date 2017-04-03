@@ -21,10 +21,32 @@ object CSVProducer {
       val cols = line.split(",").map(_.trim)
       // do whatever you want with the columns here
       runThread(kafkaConfig.getProperty(TOPIC_CAR)) { (topic, producer) =>
-        val eventJson = Json.toJson(CarEvent(cols(0).toInt,cols(1),false)).toString()
+        val eventJson = Json.toJson(CarEvent(
+          cols(0).toInt,
+          cols(1),
+          cols(2),
+          cols(3),
+          cols(4),
+          cols(5).toInt,
+          cols(6),
+          cols(7),
+          cols(8),
+          cols(9),
+          cols(10),
+          cols(11).toDouble,
+          cols(12).toDouble,
+          cols(13).toDouble,
+          cols(14).toDouble,
+          cols(15),
+          cols(16).toDouble,
+          cols(17),
+          cols(18).toDouble,
+          cols(19).toDouble,
+          false)).toString()
+
         println(s"sending event to $topic $eventJson")
         producer.send(new ProducerRecord[String, String](topic, eventJson))
-//        println(s"sent event with the following fields: ${cols(0)} | ${cols(1)}")
+        //        println(s"sent event with the following fields: ${cols(0)} | ${cols(1)}")
         println(s"JSON is: ${eventJson}")
 
       }
@@ -32,22 +54,21 @@ object CSVProducer {
     bufferedSource.close
 
 
-    def runThread(kafkaTopic: String) (sendMessage: (String, KafkaProducer[String, String]) => Unit): Unit = {
+    def runThread(kafkaTopic: String)(sendMessage: (String, KafkaProducer[String, String]) => Unit): Unit = {
       new Thread(new Runnable {
         override def run(): Unit = {
           val producer = new KafkaProducer[String, String](kafkaConfig)
-//          var i = 0
-//          while (true) {
-            sendMessage(kafkaTopic, producer)
-            producer.flush()
-            Thread.sleep(1000)//add two more zeros to wait a whole second
-//          }
+          //          var i = 0
+          //          while (true) {
+          sendMessage(kafkaTopic, producer)
+          producer.flush()
+          Thread.sleep(1000) //add two more zeros to wait a whole second
+          //          }
         }
       }).start()
     }
 
   }
-
 
 
 }
