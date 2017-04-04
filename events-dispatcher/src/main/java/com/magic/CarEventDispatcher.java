@@ -35,7 +35,7 @@ public class CarEventDispatcher {
             UrlSpaceConfigurer spaceConfigurer = new UrlSpaceConfigurer("jini://localhost/*/insightedge-space");
 			GigaSpace gigaSpace = new GigaSpaceConfigurer(spaceConfigurer).gigaSpace();
 
-			SQLQuery<CarEvent> query = new SQLQuery<CarEvent>(CarEvent.class, "isSentByHttp = false");
+			SQLQuery<CarEvent> query = new SQLQuery<CarEvent>(CarEvent.class, "isSentByHttp = false AND WIP = 0");
 
 			CarEvent[] events;
 			if (removeDispatchedFromSpace) {
