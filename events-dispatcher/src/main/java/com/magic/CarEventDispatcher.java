@@ -7,6 +7,12 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.mime.MultipartEntityBuilder;
+import org.apache.http.impl.client.DefaultHttpClient;
 import org.openspaces.core.GigaSpace;
 import org.openspaces.core.GigaSpaceConfigurer;
 import org.openspaces.core.space.UrlSpaceConfigurer;
@@ -49,7 +55,7 @@ public class CarEventDispatcher {
 				for(CarEvent e : events) {
 					System.out.println("Posting " + e);
 					try {
-						httpPost(e.toString());
+						httpPost(postUrl, e.toString());
 						Thread.sleep(1000);
 					} catch(IOException ex) {
 						ex.printStackTrace();
@@ -66,33 +72,26 @@ public class CarEventDispatcher {
 
 		}
 
-		private static void httpPost(String payload) throws IOException {
-			URL obj = new URL(postUrl);
-			  HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+		public static void httpPost(String postUrl, String payload) throws IOException {
+			HttpClient httpclient = new DefaultHttpClient();
+			HttpPost httppost = new HttpPost(postUrl);
 
-			  // Setting basic post request
-			  con.setRequestMethod("POST");
-			  con.setRequestProperty("Content-Type","application/json");
+			HttpEntity entity = MultipartEntityBuilder
+					.create()
+					.addTextBody("appname", "IFSIoTDemo")
+					.addTextBody("prgname", "HTTP")
+					.addTextBody("arguments", "-AHTTP_IoTDemo#RobotTransmission,TransmissionXML")
+					.addTextBody("TransmissionXML", payload)
+					.build();
 
-			  // Send post request
-			  con.setDoOutput(true);
-			  DataOutputStream wr = new DataOutputStream(con.getOutputStream());
-			  wr.writeBytes(payload);
-			  wr.flush();
-			  wr.close();
+			httppost.setEntity(entity);
 
-			  // Get response
-			  BufferedReader in = new BufferedReader(
-			          new InputStreamReader(con.getInputStream()));
-			  String output;
-			  StringBuffer response = new StringBuffer();
-
-			  while ((output = in.readLine()) != null) {
-			   response.append(output);
-			  }
-			  in.close();
-
-			  //printing result from response
-			  System.out.println(response.toString());
+			HttpResponse response = httpclient.execute(httppost);
+			System.out.println("HTTP response code = " + response.getStatusLine().getStatusCode());
+			BufferedReader respReader = new BufferedReader(new InputStreamReader(response.getEntity().getContent()));
+			String line;
+			while ((line = respReader.readLine()) != null) {
+				System.out.println(line);
+			}
 		}
 }

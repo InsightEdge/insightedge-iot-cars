@@ -3,7 +3,7 @@
 
 # Run dispatcher every 5 seconds
 SLEEP_TIME=5
-POST_URL=http://localhost:80
+POST_URL=http://cloud.magicsoftware.de/Magicxpi4.5/MgWebRequester.dll
 # whether to delete dispatched events from the space OR update 'isSentByHttp' field. Possible values: 'true' - remove, 'false' - update
 REMOVE_DISPATCHED_FROM_SPACE=false
 
