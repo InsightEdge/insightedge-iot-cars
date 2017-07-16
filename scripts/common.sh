@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+echo "INSIGHTEDGE_HOME=$INSIGHTEDGE_HOME"
+
+GS_HOME=$INSIGHTEDGE_HOME/datagrid
