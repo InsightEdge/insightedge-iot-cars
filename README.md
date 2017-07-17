@@ -31,7 +31,7 @@ The gateways are configured to replicate date from `insightedge-space` to `insig
     - Configure slave locator:
         - Open `Settings > Discovery > Locator Management...`:
         ![](images/configure_locator_step_1.png)
-        - Fill `127.0.0.1:9999` and press `Add` button:
+        - Add `127.0.0.1:9999` and `127.0.0.1:4174` lookup locators:
         ![](images/configure_locator_step_2.png)
     
  1. Deploy Events Master space:
