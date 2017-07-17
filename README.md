@@ -53,6 +53,6 @@ The gateways are configured to replicate date from `insightedge-space` to `insig
     - Run command: `./start-kafka-producer.sh`
     
  1. Observe replicated messages:
-    - ![](images/replicated_messages.png)
+    - ![](images/replicated_messages_2.png)
     
 
