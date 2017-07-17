@@ -58,6 +58,7 @@
 
     </dependencies>
     <build>
+        <finalName>slave-events-space</finalName>
         <defaultGoal>package</defaultGoal>
         <testResources>
             <testResource>

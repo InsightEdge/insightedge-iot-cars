@@ -1,11 +1,6 @@
-. env.sh
-
-echo "INSIGHTEDGE_HOME=$INSIGHTEDGE_HOME"
-
-GS_HOME=$INSIGHTEDGE_HOME/datagrid
+. common.sh
 
 export XAP_LOOKUP_GROUPS="SLAVE"
-
 
 export XAP_LUS_OPTIONS=-Dcom.sun.jini.reggie.initialUnicastDiscoveryPort=9999
 export XAP_LOOKUP_LOCATORS="127.0.0.1:9999"

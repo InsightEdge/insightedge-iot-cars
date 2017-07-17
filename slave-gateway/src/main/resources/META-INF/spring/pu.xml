@@ -13,7 +13,7 @@
    http://www.openspaces.org/schema/core/gateway http://www.openspaces.org/schema/12.0/core/gateway/openspaces-gateway.xsd">
 
       <os-gateway:sink id="sink" local-gateway-name="SLAVE" gateway-lookups="gatewayLookups"
-                       local-space-url="jini://*/*/insightedge-space-slave">
+                       local-space-url="jini://*/*/insightedge-slave-space">
             <os-gateway:sources>
                   <os-gateway:source name="MASTER"/>
             </os-gateway:sources>

@@ -59,6 +59,7 @@
 
     </dependencies>
     <build>
+        <finalName>slave-events-gateway</finalName>
         <defaultGoal>package</defaultGoal>
         <testResources>
             <testResource>

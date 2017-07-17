@@ -1,8 +1,5 @@
 #!/usr/bin/env bash
 
-echo "INSIGHTEDGE_HOME=$INSIGHTEDGE_HOME"
-
-
 streamJar="../events-streaming/target/events-streaming.jar"
 
 ieHost=localhost

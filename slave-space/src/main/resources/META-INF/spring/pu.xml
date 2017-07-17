@@ -27,7 +27,7 @@
       -->
       <!--<os-core:giga-space id="gigaSpace" space="insightedgespace" tx-manager="transactionManager"/>-->
 
-      <os-core:embedded-space id="space" name="insightedge-space-slave" />
+      <os-core:embedded-space id="space" name="insightedge-slave-space" />
       <os-core:giga-space id="gigaSpace" space="space" />
 
       <os-core:giga-space-context />

@@ -11,12 +11,12 @@ echo ""
 echo "      Deploying events space"
 echo ""
 
-$GS_HOME/bin/gs.sh deploy events-space/target/events-space-1.0.0-SNAPSHOT.jar
+$GS_HOME/bin/gs.sh deploy events-space/target/magic-events-space.jar
 
 echo ""
 echo "      Deploying events gateway"
 echo ""
 
-$GS_HOME/bin/gs.sh deploy events-gateway/target/events-gateway-1.0.0-SNAPSHOT.jar
+$GS_HOME/bin/gs.sh deploy events-gateway/target/magic-events-gateway.jar
 
 popd
