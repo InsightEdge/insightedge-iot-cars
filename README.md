@@ -14,7 +14,7 @@ The gateways are configured to replicate date from `insightedge-space` to `insig
 
  1. Setup evn variables: 
     - Make sure you have Maven and Java installed on your system
-    - Install `Insigtedge 1.0.0` and setup `INSIGHTEDGE_HOME` env variable
+    - Install `Insigtedge 1.0.0` (**with ENTERPRISE license supporting WAN add-on**) and setup `INSIGHTEDGE_HOME` env variable
     - Install `Kafka 2.10-0.9.0.0` and setup `KAFKA_HOME` env variable
  
  1. Make a build: 
