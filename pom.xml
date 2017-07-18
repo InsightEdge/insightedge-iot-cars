@@ -42,12 +42,14 @@
     </profiles>
 
     <modules>
-		<module>events-dispatcher</module>
 		<module>events-space</module>
 		<module>events-model</module>
         <module>events-producer</module>
         <module>space-model</module>
         <module>events-streaming</module>
+        <module>events-gateway</module>
+        <module>slave-space</module>
+        <module>slave-gateway</module>
     </modules>
 
     <dependencyManagement>

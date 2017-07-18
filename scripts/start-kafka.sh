@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-echo "KAFKA_HOME=$KAFKA_HOME"
-
 mkdir $KAFKA_HOME/logs
 
 export ZLOGS=$KAFKA_HOME/logs/zookeeper.log
