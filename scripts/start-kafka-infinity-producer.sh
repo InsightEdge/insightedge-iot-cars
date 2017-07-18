@@ -6,7 +6,8 @@ producerJar="../events-producer/target/magic-events-producer.jar"
 #java -jar $producerJar csv.location="../KafkaInput.csv"
 
 #On personal computer:
-java -jar $producerJar csv.location="../car_events.csv"
+nohup java -jar $producerJar csv.location="../car_events.csv" type=infinity > /dev/null 2>&1 &
+
 
 
 

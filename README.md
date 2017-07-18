@@ -34,6 +34,11 @@ The gateways are configured to replicate date from `insightedge-space` to `insig
         - Add `127.0.0.1:9999` and `127.0.0.1:4174` lookup locators:
         ![](images/configure_locator_step_2.png)
     
+ 1. Open Web UI:
+    - Open link: `http://[SERVER_IP]:8099/`
+    - fill locators with: `127.0.0.1:4174,127.0.0.1:9999`
+    ![](images/web_ui_login.png)
+    
  1. Deploy Events Master space:
     - Run command: `./deploy-events-space.sh`
     
@@ -41,8 +46,11 @@ The gateways are configured to replicate date from `insightedge-space` to `insig
     - Run command: `./deploy-events-slave-space.sh`
     
  1. Observe all spaces and gateways are deployed:
+    - in gs-ui:
     ![](images/deployed_spaces_and_gateways.png)
- 
+    - in gs-web-ui:
+    ![](images/deployed_spaces_and_gateways_web_ui.png)
+    
  1. Start Kafka:
     - Run command: `./start-kafka.sh`
  
@@ -53,6 +61,9 @@ The gateways are configured to replicate date from `insightedge-space` to `insig
     - Run command: `./start-kafka-producer.sh`
     
  1. Observe replicated messages:
-    - ![](images/replicated_messages_2.png)
+    - gs ui
+    ![](images/replicated_messages_2.png)
+    - web ui:
+    ![](images/replicated_messages_web_ui.png)
     
 

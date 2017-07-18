@@ -12,6 +12,35 @@ import play.api.libs.json.Json
   */
 object CSVProducer {
 
+  def parseLine(line: String): Array[String] = {
+    line.split(",").map(_.trim)
+  }
+
+  def toEntity(cols: Array[String]): CarEvent = {
+    CarEvent(
+      cols(0).toInt,
+      cols(1),
+      cols(2),
+      cols(3),
+      cols(4),
+      cols(5).toInt,
+      cols(6),
+      cols(7),
+      cols(8),
+      cols(9),
+      cols(10),
+      cols(11).toDouble,
+      cols(12).toDouble,
+      cols(13).toDouble,
+      cols(14).toDouble,
+      cols(15),
+      cols(16).toDouble,
+      cols(17),
+      cols(18).toDouble,
+      cols(19).toDouble,
+      false)
+  }
+
   def run(kafkaConfig: Properties): Unit = {
     println("-- Running CSV producer")
     println("------- first arg:" + kafkaConfig.getProperty(CSV_LOCATION))
@@ -24,30 +53,9 @@ object CSVProducer {
 
     //drop the headers first line
     for (line <- bufferedSource.getLines.drop(1)) {
-      val cols = line.split(",").map(_.trim)
+      val cols = parseLine(line)
       // do whatever you want with the columns here
-      val eventJson = Json.toJson(CarEvent(
-        cols(0).toInt,
-        cols(1),
-        cols(2),
-        cols(3),
-        cols(4),
-        cols(5).toInt,
-        cols(6),
-        cols(7),
-        cols(8),
-        cols(9),
-        cols(10),
-        cols(11).toDouble,
-        cols(12).toDouble,
-        cols(13).toDouble,
-        cols(14).toDouble,
-        cols(15),
-        cols(16).toDouble,
-        cols(17),
-        cols(18).toDouble,
-        cols(19).toDouble,
-        false)).toString()
+      val eventJson = Json.toJson(toEntity(cols)).toString()
 
       println(s"sending event to $topic $eventJson")
       producer.send(new ProducerRecord[String, String](topic, eventJson))
@@ -58,6 +66,32 @@ object CSVProducer {
     bufferedSource.close
     Thread.sleep(1000) //add two more zeros to wait a whole second
 
+  }
+
+  def infinity(kafkaConfig: Properties) = {
+    println("-- Running CSV producer")
+    println("------- first arg:" + kafkaConfig.getProperty(CSV_LOCATION))
+    val lines = io.Source.fromFile(kafkaConfig.getProperty(CSV_LOCATION)).getLines.drop(1).toList
+
+    val producer = new KafkaProducer[String, String](kafkaConfig)
+    val topic = kafkaConfig.getProperty(TOPIC_CAR)
+
+    Thread.sleep(1000) //add two more zeros to wait a whole second
+
+    while(true) {
+      for (line <- lines) {
+        val cols = parseLine(line)
+        val entity = toEntity(cols).copy(ID = Random.nextInt())
+        val eventJson = Json.toJson(entity).toString()
+
+        println(s"sending event to $topic $eventJson")
+        producer.send(new ProducerRecord[String, String](topic, eventJson))
+        producer.flush()
+        println(s"JSON is: $eventJson")
+
+      }
+      Thread.sleep(1000)
+    }
   }
 
 
