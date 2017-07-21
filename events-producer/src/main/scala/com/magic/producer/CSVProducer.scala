@@ -68,7 +68,7 @@ object CSVProducer {
 
   }
 
-  def infinity(kafkaConfig: Properties) = {
+  def infinity(kafkaConfig: Properties, config: Map[String, String]) = {
     println("-- Running CSV producer")
     println("------- first arg:" + kafkaConfig.getProperty(CSV_LOCATION))
     val lines = io.Source.fromFile(kafkaConfig.getProperty(CSV_LOCATION)).getLines.drop(1).toList
@@ -90,7 +90,7 @@ object CSVProducer {
         println(s"JSON is: $eventJson")
 
       }
-      Thread.sleep(1000)
+      Thread.sleep(config("sleep").toInt)
     }
   }
 

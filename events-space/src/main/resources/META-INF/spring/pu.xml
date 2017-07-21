@@ -11,7 +11,7 @@
    http://www.openspaces.org/schema/core http://www.openspaces.org/schema/12.0/core/openspaces-core.xsd
    http://www.openspaces.org/schema/events http://www.openspaces.org/schema/12.0/events/openspaces-events.xsd
    http://www.openspaces.org/schema/core/gateway http://www.openspaces.org/schema/12.0/core/gateway/openspaces-gateway.xsd">
- 
+
       <!-- Scan the packages for annotations / -->
       <context:component-scan base-package="com.magic" />
  
@@ -21,7 +21,13 @@
       <!-- A bean representing a space (an IJSpace implementation) -->
       <os-core:distributed-tx-manager id="transactionManager"/>
 
-      <os-core:embedded-space id="insightedgespace" name="insightedge-space" gateway-targets="gatewayTargets"/>
+      <bean id="replicationFilter" class="com.magic.events.ReplicationFilter"/>
+
+      <os-core:embedded-space id="insightedgespace" name="insightedge-space" gateway-targets="gatewayTargets">
+            <os-core:space-replication-filter>
+                  <os-core:output-filter ref="replicationFilter"/>
+            </os-core:space-replication-filter>
+      </os-core:embedded-space>
   
       <!--
           A wrapper bean to the space to provide OpenSpaces simplified space API (built on top of IJSpace/JavaSpace).

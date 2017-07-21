@@ -28,7 +28,7 @@ object ProducerApp extends App{
   println(s"-- kafkaConfig=$kafkaConfig")
 
   mapArgs.get("type") match {
-    case Some("infinity") => CSVProducer.infinity(kafkaConfig)
+    case Some("infinity") => CSVProducer.infinity(kafkaConfig, mapArgs)
     case None => CSVProducer.run(kafkaConfig)
     case _ => throw new IllegalArgumentException("Specified wrong type")
   }

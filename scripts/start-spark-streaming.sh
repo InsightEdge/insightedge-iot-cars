@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+. common.sh
+
 streamJar="../events-streaming/target/events-streaming.jar"
 
 ieHost=localhost
@@ -17,5 +19,6 @@ nohup $INSIGHTEDGE_HOME/bin/insightedge-submit \
     --lookup-groups insightedge \
     --lookup-locators $ieHost \
     --batch-duration 1 \
-    --checkpoint-dir "C1" & 
+    --checkpoint-dir "C1" \
+    --kafka-topic $KAFKA_TOPIC > $LOG_DIR/spark-streaming.log 2>&1 &
 

@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+. common.sh
+
 mkdir $KAFKA_HOME/logs
 
 export ZLOGS=$KAFKA_HOME/logs/zookeeper.log
@@ -16,6 +18,6 @@ nohup $KAFKA_HOME/bin/kafka-server-start.sh $KAFKA_HOME/config/server.properties
 echo "Waiting 15 seconds..."
 sleep 15
 
-echo "Creating Kafka topics for car_events"
-$KAFKA_HOME/bin/kafka-topics.sh --create --zookeeper 127.0.0.1:2181 --replication-factor 1 --partitions 1 --topic car_events
+echo "Creating Kafka topics for $KAFKA_TOPIC"
+$KAFKA_HOME/bin/kafka-topics.sh --create --zookeeper 127.0.0.1:2181 --replication-factor 1 --partitions 1 --topic $KAFKA_TOPIC
 

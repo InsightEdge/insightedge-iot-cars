@@ -50,6 +50,7 @@
         <module>events-gateway</module>
         <module>slave-space</module>
         <module>slave-gateway</module>
+        <module>events-dispatcher</module>
     </modules>
 
     <dependencyManagement>

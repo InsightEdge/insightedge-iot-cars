@@ -46,6 +46,7 @@ object EventsStreamApp {
     val groupId = opt[String]("group-id", required = true)
     val batchDuration = opt[String]("batch-duration", required = true)
     val checkpointDir = opt[String]("checkpoint-dir", required = true)
+    val kafkaTopic = opt[String]("kafka-topic", required = true)
     verify()
   }
 
@@ -61,12 +62,12 @@ object EventsStreamApp {
     rootLogger.setLevel(Level.ERROR)
 
     // open Kafka streams
-    val carStream = createCarStream(ssc, kafkaParams)
+    val carStream = createCarStream(conf, ssc, kafkaParams)
 
     carStream
       .mapPartitions { partitions =>
        partitions.map { e =>
-         print("_______________________________- " +e)
+         println("_______________________________- " +e)
         model.CarEvent(
           e.ID,
           e.RECHNERBEZ,
@@ -96,9 +97,9 @@ object EventsStreamApp {
     ssc
   }
 
-  def createCarStream(ssc: StreamingContext, kafkaParams: Map[String, String]): DStream[CarEvent] = {
+  def createCarStream(conf: Conf, ssc: StreamingContext, kafkaParams: Map[String, String]): DStream[CarEvent] = {
     KafkaUtils.createStream[String, String, StringDecoder, StringDecoder](ssc, kafkaParams,
-      Map("car_events" -> 1), StorageLevel.MEMORY_ONLY)
+      Map(conf.kafkaTopic() -> 1), StorageLevel.MEMORY_ONLY)
       .map(_._2)
       .map(message => Json.parse(message).as[CarEvent])
   }

@@ -22,3 +22,10 @@ echo "KAFKA_HOME=$KAFKA_HOME"
 if [ $KAFKA_HOME == "" ]; then
     env_variable_error "INSIGHTEDGE_HOME"
 fi
+
+
+export KAFKA_TOPIC="car_events_4"
+
+export LOG_DIR="logs"
+
+mkdir -p $LOG_DIR
