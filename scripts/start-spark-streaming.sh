@@ -20,5 +20,5 @@ nohup $INSIGHTEDGE_HOME/bin/insightedge-submit \
     --lookup-locators $ieHost \
     --batch-duration 1 \
     --checkpoint-dir "C1" \
-    --kafka-topic $KAFKA_TOPIC > $LOG_DIR/spark-streaming.log 2>&1 &
+    --kafka-topic $KAFKA_TOPIC > $DEMO_LOG_DIR/spark-streaming.log 2>&1 &
 

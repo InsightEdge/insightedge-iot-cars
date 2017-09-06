@@ -26,6 +26,6 @@ fi
 
 export KAFKA_TOPIC="car_events_4"
 
-export LOG_DIR="logs"
+export DEMO_LOG_DIR="logs"
 
-mkdir -p $LOG_DIR
+mkdir -p $DEMO_LOG_DIR
