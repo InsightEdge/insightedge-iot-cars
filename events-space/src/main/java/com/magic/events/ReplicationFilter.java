@@ -5,7 +5,6 @@ import com.j_spaces.core.cluster.IReplicationFilter;
 import com.j_spaces.core.cluster.IReplicationFilterEntry;
 import com.j_spaces.core.cluster.ReplicationPolicy;
 import com.magic.insightedge.model.CarEventDummy;
-import net.jini.core.entry.UnusableEntryException;
 
 import java.util.logging.Logger;
 
@@ -25,8 +24,8 @@ public class ReplicationFilter implements IReplicationFilter {
     public void process(int direction, IReplicationFilterEntry entry, String replicationTargetName) {
         try {
             logger.info("filter: " + entry.getClassName() + " ---- " + entry.getObject(space));
-        } catch (UnusableEntryException e) {
-            logger.severe(e.getMessage());
+        } catch (Exception e) {
+            logger.severe("Failed: " + e.getMessage());
         }
         if (isNotDummy(entry)) {
             entry.discard();

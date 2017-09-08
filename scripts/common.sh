@@ -15,7 +15,9 @@ if [ $INSIGHTEDGE_HOME == "" ]; then
     env_variable_error "INSIGHTEDGE_HOME"
 fi
 
-GS_HOME=$INSIGHTEDGE_HOME/datagrid
+export GS_HOME=$INSIGHTEDGE_HOME/datagrid
+
+echo "GS_HOME=$GS_HOME"
 
 echo "KAFKA_HOME=$KAFKA_HOME"
 

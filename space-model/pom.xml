@@ -18,6 +18,30 @@
             <artifactId>insightedge-scala</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>org.gigaspaces</groupId>
+            <artifactId>xap-openspaces</artifactId>
+            <version>${xap.version}</version>
+            <!-- Exclude because of Hamcrest lib version collision.
+                Mockito-all includes Hamcrest lib and Junit depends on Hamcrest -->
+            <exclusions>
+                <exclusion>
+                    <groupId>org.mockito</groupId>
+                    <artifactId>mockito-all</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.gigaspaces</groupId>
+            <artifactId>xap-datagrid</artifactId>
+            <version>${xap.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.gigaspaces</groupId>
+            <artifactId>xap-security</artifactId>
+            <version>${xap.version}</version>
+        </dependency>
+
         <!--Test-->
         <dependency>
             <groupId>org.scalatest</groupId>
