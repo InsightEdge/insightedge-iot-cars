@@ -21,7 +21,13 @@
       <!-- A bean representing a space (an IJSpace implementation) -->
       <os-core:distributed-tx-manager id="transactionManager"/>
 
-      <os-core:embedded-space id="insightedgespace" name="insightedge-space" gateway-targets="gatewayTargets"/>
+    <bean id="testFilter" class="com.magic.TestFilter"/>
+
+      <os-core:embedded-space id="insightedgespace" name="insightedge-space" gateway-targets="gatewayTargets">
+            <os-core:space-replication-filter>
+                  <os-core:output-filter ref="testFilter"/>
+            </os-core:space-replication-filter>
+      </os-core:embedded-space>
   
       <!--
           A wrapper bean to the space to provide OpenSpaces simplified space API (built on top of IJSpace/JavaSpace).

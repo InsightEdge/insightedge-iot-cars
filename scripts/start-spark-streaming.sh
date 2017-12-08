@@ -5,6 +5,8 @@ streamJar="../events-streaming/target/events-streaming.jar"
 ieHost=localhost
 zookeeper=localhost:2181
 
+rm -R C1
+
 nohup $INSIGHTEDGE_HOME/bin/insightedge-submit \
     --class com.magic.insightedge.EventsStreamApp \
     --master spark://$ieHost:7077 \
@@ -17,5 +19,7 @@ nohup $INSIGHTEDGE_HOME/bin/insightedge-submit \
     --lookup-groups insightedge \
     --lookup-locators $ieHost \
     --batch-duration 1 \
-    --checkpoint-dir "C1" & 
+    --checkpoint-dir "C1" > spark-streaming.log 2>&1 &
+
+echo $! > spark-streaming-pid.log 2>&1
 
