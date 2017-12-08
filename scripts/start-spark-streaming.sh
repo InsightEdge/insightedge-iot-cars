@@ -8,6 +8,8 @@ streamJar="../events-streaming/target/events-streaming.jar"
 ieHost=localhost
 zookeeper=localhost:2181
 
+rm -R C1
+
 nohup $INSIGHTEDGE_HOME/bin/insightedge-submit \
     --class com.magic.insightedge.EventsStreamApp \
     --master spark://$ieHost:7077 \

@@ -66,7 +66,7 @@ object EventsStreamApp {
     carStream
       .mapPartitions { partitions =>
        partitions.map { e =>
-         print("_______________________________- " +e)
+         println("_______________________________- " +e)
         model.CarEvent(
           e.ID,
           e.RECHNERBEZ,
@@ -93,6 +93,25 @@ object EventsStreamApp {
        }
       }
       .saveToGrid()
+
+    carStream
+      .mapPartitions { partitions =>
+        partitions.map { e =>
+          println("mapping to Event1 - " +e)
+          new Event1().setId(e.ID)
+        }
+      }
+      .saveToGrid()
+
+    carStream
+      .mapPartitions { partitions =>
+        partitions.map { e =>
+          println("mapping to Event2 - " +e)
+          new Event2().setId(e.ID)
+        }
+      }
+      .saveToGrid()
+
     ssc
   }
 

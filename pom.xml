@@ -48,6 +48,7 @@
         <module>events-producer</module>
         <module>space-model</module>
         <module>events-streaming</module>
+        <module>version2</module>
     </modules>
 
     <dependencyManagement>

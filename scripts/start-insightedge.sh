@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+. common.sh
 
 echo "INSIGHTEDGE_HOME=$INSIGHTEDGE_HOME"
 
