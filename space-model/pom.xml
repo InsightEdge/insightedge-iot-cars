@@ -29,21 +29,6 @@
             <artifactId>play-json_2.10</artifactId>
             <version>2.4.8</version>
         </dependency>
-
-
-
-        <dependency>
-            <groupId>org.gigaspaces</groupId>
-            <artifactId>xap-openspaces</artifactId>
-            <version>${xap.version}</version>
-            <!--<scope>provided</scope>-->
-        </dependency>
-        <dependency>
-            <groupId>org.gigaspaces</groupId>
-            <artifactId>xap-datagrid</artifactId>
-            <version>${xap.version}</version>
-            <!--<scope>provided</scope>-->
-        </dependency>
     </dependencies>
 
     <build>

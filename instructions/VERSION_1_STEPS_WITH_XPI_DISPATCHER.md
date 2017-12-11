@@ -1,5 +1,7 @@
 # Deploy Kafka and Spark with InsightEdge
 
+![](images/v1_diagram_2.jpg)
+
 1.	Kill all java processes
 1.	Move to Local scripts folder folder `cd /home/experian/demo/insightedge-iot-cars/scripts`
 1.	Start Kafka

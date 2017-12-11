@@ -1,6 +1,6 @@
 # Magic WAN replication demo
 
-![](images/diagram.png)
+![](images/v2_diagram_2.jpg)
 
 On this image represented high level diagram of the components and data flow in the demo application.
 
