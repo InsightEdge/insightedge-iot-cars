@@ -20,6 +20,6 @@
 1.	Start Spark Job:
     - ./start-spark-streaming.sh
 1.	Start producer:
-    - ./start-kafka-producer-bad-input.sh
+    - ./start-kafka-producer-small-input.sh
 1.	When the space is filled run Http XPI Dispatching:
     - ./start-xpi-dispatcher.sh

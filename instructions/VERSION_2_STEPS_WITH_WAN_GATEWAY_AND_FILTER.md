@@ -58,7 +58,7 @@ The gateways are configured to replicate date from `insightedge-space` to `insig
     - Run command: `./start-spark-streaming.sh`
 
  1. Start events producer:
-    - Run command: `./start-kafka-producer-bad-input.sh` (or for single event `./start-kafka-producer-single.sh`)
+    - Run command: `./start-kafka-producer-small-input.sh` (or for single event `./start-kafka-producer-single.sh`)
 
  1. Observe replicated messages:
     - gs ui
